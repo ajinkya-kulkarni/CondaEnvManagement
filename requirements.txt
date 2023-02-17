@@ -1,0 +1,13 @@
+numpy
+opencv-python-headless
+scikit-image
+matplotlib
+Pillow
+scipy
+numba
+streamlit
+tensorflow-cpu
+czifile
+tifffile
+stardist
+notebook
