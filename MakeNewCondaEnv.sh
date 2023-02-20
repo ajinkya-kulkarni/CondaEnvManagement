@@ -46,4 +46,6 @@ create_environment "deeplearning" "requirements_deeplearning.txt"
 create_environment "napari" "requirements_deeplearning.txt"
 pip install "napari[all]"
 
+echo ""
 echo "All done!"
+echo ""
