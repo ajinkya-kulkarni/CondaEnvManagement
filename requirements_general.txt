@@ -1,4 +1,6 @@
-numpy==1.24.2
+numpy==1.22.4
+llvmlite==0.38.0
+numba==0.55.2
 opencv-python-headless==4.7.0.68
 imageio==2.25.1
 scikit-image==0.19.3
