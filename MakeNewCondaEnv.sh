@@ -23,14 +23,14 @@ create_environment() {
 	# Install jupyter notebook
 	conda install -c anaconda jupyter --yes
 
+	# Install packages in the environment
+	echo "Installing packages in $name environment"
+	curl -s "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/$requirements_file" | xargs -n 1 pip install
+
 	if [ "$name" == "napari" ]; then
 		pip install pyqtwebengine==5.15
     	pip install "napari[all]"
 	fi
-
-	# Install packages in the environment
-	echo "Installing packages in $name environment"
-	curl -s "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/$requirements_file" | xargs -n 1 pip install
 
 	# Clean the environment
 	echo "Cleaning $name environment"
