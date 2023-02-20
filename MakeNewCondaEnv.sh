@@ -6,6 +6,9 @@ source ~/.zshrc
 
 set -eu
 
+# Install anaconda-clean first
+conda install anaconda-clean
+
 # Function to create and activate an environment
 create_environment() {
 # Extract environment name and requirements file from input arguments
@@ -17,9 +20,12 @@ echo "Creating and activating $name environment"
 conda create --name "$name" python=3.9 --yes
 conda activate "$name"
 
+# Install jupyter notebook
+conda install -c anaconda jupyter
+
 # Install packages in the environment
 echo "Installing packages in $name environment"
-curl -s "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/$requirements_file" | xargs -n 1 pip install -q
+curl -s "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/$requirements_file" | xargs -n 1 pip install
 
 # Clean the environment
 echo "Cleaning $name environment"
@@ -38,6 +44,6 @@ create_environment "deeplearning" "requirements_deeplearning.txt"
 
 # Create and activate the napari environment
 create_environment "napari" "requirements_deeplearning.txt"
-pip install -q "napari[all]"
+pip install "napari[all]"
 
 echo "All done!"
