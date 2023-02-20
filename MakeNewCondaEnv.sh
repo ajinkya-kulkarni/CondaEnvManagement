@@ -27,30 +27,13 @@ conda deactivate
 
 ########################################################################################
 
-# conda create -y -n napari -c conda-forge python=3.9
-# conda activate napari
+conda create -y -n napari -c conda-forge python=3.9
+conda activate napari
 
-# conda install pip
+pip install -r ~/Desktop/CondaEnvManagement/requirements_deeplearning.txt
 
-# pip install numpy
-# pip install opencv-python-headless
-# pip install scikit-image
-# pip install matplotlib
-# pip install Pillow
-# pip install scipy
-# pip install numba
-# pip install streamlit
-# pip install czifile
-# pip install tifffile
-# pip install notebook
-# pip install watchdog
-# pip install tqdm
-# pip install ipywidgets
-# pip install tensorflow-cpu
-# pip install scikit-learn
+pip install "napari[all]"
 
-# python -m pip install "napari[all]"
-
-# conda deactivate
+conda deactivate
 
 ########################################################################################
