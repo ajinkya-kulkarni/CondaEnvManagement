@@ -24,6 +24,7 @@ create_environment() {
 	conda install -c anaconda jupyter --yes
 
 	if [ "$name" == "napari" ]; then
+		pip install pyqtwebengine==5.15
     	pip install "napari[all]"
 	fi
 
