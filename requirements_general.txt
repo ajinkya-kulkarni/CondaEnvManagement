@@ -1,13 +1,10 @@
-numpy==1.21.6
-llvmlite==0.38
+numpy
 opencv-python-headless
 scikit-image
 matplotlib
 Pillow
-scipy>=1.0.0
-numba==0.55.0
+scipy
 streamlit
-czifile
 tifffile
 notebook
 ipywidgets
