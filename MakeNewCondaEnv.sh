@@ -1,39 +1,44 @@
+#!/bin/bash
 
+# Clear the screen
 clear
 
-########################################################################################
+# Initialize the shell for Conda
+conda init zsh
+source ~/.zshrc
 
-for i in `conda env list|awk '{print $1}'|egrep -v 'base|#'|tr '\n' ' '`;do echo $i;conda env remove --name $i;done
+set -eu
 
-conda install anaconda-clean
+# Function to create and activate an environment
+create_environment() {
+  # Extract environment name and requirements file from input arguments
+  name="$1"
+  requirements_file="$2"
 
-########################################################################################
+  # Create and activate the environment
+  echo "Creating and activating $name environment"
+  conda create --name "$name" python=3.9 --yes
+  conda activate "$name"
 
-conda create -n general python=3.9 --yes
-conda activate general
+  # Install packages in the environment
+  echo "Installing packages in $name environment"
+  curl -s "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/$requirements_file" | xargs -n 1 pip install -q
 
-pip install -r ~/Desktop/CondaEnvManagement/requirements_general.txt
+  # Clean the environment
+  echo "Cleaning $name environment"
+  conda clean --all --yes
 
-conda deactivate
+  # Deactivate the environment
+  echo "Deactivating $name environment"
+  conda deactivate
+}
 
-########################################################################################
+# Create and activate the general environment
+create_environment "general" "requirements_general.txt"
 
-conda create -n deeplearning python=3.9 --yes
-conda activate deeplearning
+# Create and activate the deeplearning environment
+create_environment "deeplearning" "requirements_deeplearning.txt"
 
-pip install -r ~/Desktop/CondaEnvManagement/requirements_deeplearning.txt
-
-conda deactivate
-
-########################################################################################
-
-conda create -y -n napari -c conda-forge python=3.9
-conda activate napari
-
-pip install -r ~/Desktop/CondaEnvManagement/requirements_deeplearning.txt
-
-pip install "napari[all]"
-
-conda deactivate
-
-########################################################################################
+# Create and activate the napari environment
+create_environment "napari" "requirements_deeplearning.txt"
+pip install -q "napari[all]"
