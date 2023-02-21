@@ -55,6 +55,15 @@ create_environment() {
 
 	fi
 
+	if [ "$name" == "ABAproject" ]; then
+
+		pip install boto3==1.26.75
+		pip install botocore==1.29.75
+		pip install caosdb==0.11.0
+		pip install caosadvancedtools==0.6.1
+
+	fi
+
 	# Clean the environment
 	echo "Cleaning $name environment"
 	if ! conda clean --all --yes; then
@@ -76,6 +85,9 @@ create_environment "deeplearning"
 
 # Create and activate the napari environment
 create_environment "napari"
+
+# Create and activate the ABAproject environment
+create_environment "ABAproject"
 
 # Echo success message
 echo ""
