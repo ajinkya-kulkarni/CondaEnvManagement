@@ -31,9 +31,12 @@ create_environment() {
 		echo "Error: Failed to install jupyter notebook in $name environment."
 	fi
 
+	# First install wget
+	conda install -c anaconda wget --yes
+
 	# Install packages in the environment
 	echo "Installing packages in $name environment"
-	if ! wget -qO- "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/requirements_common.txt" | xargs -n 1 pip install; then
+	if ! wget -O- "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/requirements_common.txt" | xargs -n 1 pip install; then
 		echo "Error: Failed to install packages in $name environment."
 	fi
 	
