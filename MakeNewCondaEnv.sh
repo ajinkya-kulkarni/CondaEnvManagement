@@ -14,12 +14,6 @@ fi
 
 set -eu
 
-# Check if Conda is installed
-if [ -x "$(command -v conda)" ]; then
-	echo "Error: Conda is not installed or the environment is not set up. Please install Conda and set up the environment."
-	exit 1
-fi
-
 # Install anaconda-clean first
 if ! conda install anaconda-clean --yes; then
 	echo "Error: Failed to install anaconda-clean. Please check your internet connection or try again later."
