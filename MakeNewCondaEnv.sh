@@ -96,7 +96,6 @@ create_environment "deeplearning" "requirements_deeplearning.txt"
 
 # Create and activate the napari environment
 create_environment "napari" "requirements_deeplearning.txt"
-pip install "napari[all]"
 
 # Echo success message
 echo ""
