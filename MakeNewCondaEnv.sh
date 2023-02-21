@@ -30,7 +30,6 @@ fi
 create_environment() {
 	# Extract environment name and requirements file from input arguments
 	name="$1"
-	requirements_file="$2"
 
 	# Create and activate the environment
 	echo "Creating and activating $name environment"
@@ -51,7 +50,7 @@ create_environment() {
 
 	# Install packages in the environment
 	echo "Installing packages in $name environment"
-	if ! curl -s "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/$requirements_file" | xargs -n 1 pip install; then
+	if ! curl -s "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/requirements_common.txt" | xargs -n 1 pip install; then
 		echo "Error: Failed to install packages in $name environment."
 		exit 1
 	fi
@@ -89,20 +88,15 @@ create_environment() {
 	fi
 }
 
-# Check if the requirement files exist
-if [ ! -f requirements_common.txt ] || [ ! -f requirements_deeplearning.txt ]; then
-	echo "Error: One or more of the package requirement files are missing. Please make sure all required files are present."
-	exit 1
-fi
 
 # Create and activate the general environment
-create_environment "general" "requirements_common.txt"
+create_environment "general"
 
 # Create and activate the deeplearning environment
-create_environment "deeplearning" "requirements_common.txt"
+create_environment "deeplearning"
 
 # Create and activate the napari environment
-create_environment "napari" "requirements_common.txt"
+create_environment "napari"
 
 # Echo success message
 echo ""
