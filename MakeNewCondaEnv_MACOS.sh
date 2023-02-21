@@ -36,7 +36,7 @@ create_environment() {
 	if ! wget -qO- "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/requirements_common.txt" | xargs -n 1 pip install; then
 		echo "Error: Failed to install packages in $name environment."
 	fi
-
+	
 	if [ "$name" == "deeplearning" ]; then
 
 		pip install tensorflow-cpu==2.11.0
