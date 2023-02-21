@@ -7,6 +7,9 @@ source ~/.zshrc
 # Clear all variables
 set -eu
 
+# Remove all environments except `base`
+for i in `conda env list|awk '{print $1}'|egrep -v 'base|#'|tr '\n' ' '`;do echo $i;conda env remove --name $i;done
+
 # Install anaconda-clean first
 if ! conda install anaconda-clean --yes; then
 	echo "Error: Failed to install anaconda-clean. Please check your internet connection or try again later."
