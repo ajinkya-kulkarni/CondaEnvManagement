@@ -68,7 +68,6 @@ create_environment() {
 	fi
 }
 
-
 # Create and activate the general environment
 create_environment "general"
 
