@@ -1,4 +1,0 @@
--r requirements_common.txt
-tensorflow-cpu==2.11.0
-scikit-learn==1.2.1
-stardist==0.8.3

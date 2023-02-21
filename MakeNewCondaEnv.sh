@@ -56,6 +56,15 @@ create_environment() {
 		exit 1
 	fi
 
+tensorflow-cpu==2.11.0
+scikit-learn==1.2.1
+stardist==0.8.3
+	if [ "$name" == "napari" ]; then
+
+		pip instal
+
+	fi
+
 	if [ "$name" == "napari" ]; then
 		if ! pip install pyqtwebengine==5.15; then
 			echo "Error: Failed to install pyqtwebengine in $name environment."
