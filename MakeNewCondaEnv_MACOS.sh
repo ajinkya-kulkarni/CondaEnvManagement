@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Initialize the appropriate shell
+conda init zsh
+source ~/.zshrc
+
 # Clear the output
 clear
 
