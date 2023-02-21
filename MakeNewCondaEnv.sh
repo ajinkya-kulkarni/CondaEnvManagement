@@ -3,15 +3,7 @@
 # Clear the output
 clear
 
-# Detect the operating system and initialize the appropriate shell
-if [[ $(uname -s) == 'Darwin' ]]; then
-	conda init zsh
-	source ~/.zshrc
-else
-	conda init bash
-	source ~/.bashrc
-fi
-
+# Clear all variables
 set -eu
 
 # Install anaconda-clean first
