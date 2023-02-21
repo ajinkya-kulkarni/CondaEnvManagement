@@ -4,9 +4,6 @@
 conda init zsh
 source ~/.zshrc
 
-# Clear the output
-clear
-
 # Clear all variables
 set -eu
 
