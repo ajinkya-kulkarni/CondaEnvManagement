@@ -56,24 +56,22 @@ create_environment() {
 		exit 1
 	fi
 
-tensorflow-cpu==2.11.0
-scikit-learn==1.2.1
-stardist==0.8.3
-	if [ "$name" == "napari" ]; then
+	if [ "$name" == "deeplearning" ]; then
 
-		pip instal
+		pip install tensorflow-cpu==2.11.0
+		pip install scikit-learn==1.2.1
+		pip install stardist==0.8.3
 
 	fi
 
 	if [ "$name" == "napari" ]; then
-		if ! pip install pyqtwebengine==5.15; then
-			echo "Error: Failed to install pyqtwebengine in $name environment."
-			exit 1
-		fi
-		if ! pip install "napari[all]"; then
-			echo "Error: Failed to install napari[all] in $name environment."
-			exit 1
-		fi
+
+		pip install tensorflow-cpu==2.11.0
+		pip install scikit-learn==1.2.1
+		pip install stardist==0.8.3
+		pip install pyqtwebengine==5.15
+		pip install "napari[all]"
+
 	fi
 
 	# Clean the environment
@@ -101,10 +99,10 @@ fi
 create_environment "general" "requirements_common.txt"
 
 # Create and activate the deeplearning environment
-create_environment "deeplearning" "requirements_deeplearning.txt"
+create_environment "deeplearning" "requirements_common.txt"
 
 # Create and activate the napari environment
-create_environment "napari" "requirements_deeplearning.txt"
+create_environment "napari" "requirements_common.txt"
 
 # Echo success message
 echo ""
