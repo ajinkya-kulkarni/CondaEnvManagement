@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Initialize the appropriate shell
-conda init bash
-source ~/.bashrc
+# Initialize the appropriate base env
+/home/ajinkya/anaconda3/bin/conda activate myenv
 
 # Clear all variables
 set -eu
