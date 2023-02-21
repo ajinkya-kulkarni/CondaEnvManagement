@@ -42,7 +42,7 @@ create_environment() {
 }
 
 # Create and activate the general environment
-create_environment "general" "requirements_general.txt"
+create_environment "general" "requirements_common.txt"
 
 # Create and activate the deeplearning environment
 create_environment "deeplearning" "requirements_deeplearning.txt"
