@@ -2,7 +2,7 @@
 
 # Initialize the appropriate shell
 conda init bash
-. ~/.bashrc
+source ~/.bashrc
 
 # Clear all variables
 set -eu
