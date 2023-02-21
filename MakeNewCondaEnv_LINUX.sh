@@ -4,9 +4,6 @@
 conda init bash
 source ~/.bashrc
 
-# Clear the output
-clear
-
 # Clear all variables
 set -eu
 
