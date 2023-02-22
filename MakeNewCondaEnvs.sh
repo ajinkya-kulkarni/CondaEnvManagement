@@ -1,5 +1,15 @@
 #!/bin/bash
 
+###########################################################################################
+
+# For Linux (Ubntu 22.10 atleast), run this script as:
+# source <path/script.sh>
+
+# For MacOS, run this script as:
+# sh <path/script.sh>
+
+###########################################################################################
+
 # Set the shell options to exit on error, unset variables
 set -eu
 
@@ -7,8 +17,10 @@ set -eu
 clear
 
 echo ""
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 echo ""
+
+###########################################################################################
 
 # Remove all environments except `base`
 for i in $(conda env list | awk '{print $1}' | egrep -v 'base|#' | tr '\n' ' '); do
@@ -19,8 +31,10 @@ for i in $(conda env list | awk '{print $1}' | egrep -v 'base|#' | tr '\n' ' ');
 done
 
 echo ""
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 echo ""
+
+###########################################################################################
 
 # Define a function to create environments and install packages
 function create_environment 
@@ -29,7 +43,7 @@ function create_environment
 	name=$1
 
 	echo ""
-	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 	echo ""
 
 	# Create the environment
@@ -39,7 +53,7 @@ function create_environment
 	fi
 
 	echo ""
-	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 	echo ""
 
 	# Activate the environment
@@ -49,7 +63,7 @@ function create_environment
 	fi
 
 	echo ""
-	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 	echo ""
 
 	# Install packages
@@ -69,7 +83,7 @@ function create_environment
 	fi
 
 	echo ""
-	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 	echo ""
 
 	# Clean the environment
@@ -79,7 +93,7 @@ function create_environment
 	fi
 
 	echo ""
-	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 	echo ""
 
 	# Deactivate the environment
@@ -88,22 +102,32 @@ function create_environment
 
 }
 
+###########################################################################################
+
 if [ $(uname -s) = "Darwin" ]; then
 	# Initialize conda and source zshrc
 	conda init zsh
 	source ~/.zshrc
 fi
 
+###########################################################################################
+
 # Define an array of environment names
 environments=("general" "deeplearning" "napari" "ABAproject")
+
+###########################################################################################
 
 # Loop through the array and create/activate each environment
 for env in "${environments[@]}"; do
 	create_environment "$env"
 done
 
+###########################################################################################
+
 # Echo success message
 echo ""
 echo "All done!"
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 echo ""
+
+###########################################################################################
