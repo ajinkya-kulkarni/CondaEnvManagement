@@ -13,9 +13,6 @@
 # Set the shell options to exit on error, unset variables
 set -eu
 
-# Clear the terminal output
-clear
-
 echo ""
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 echo ""
