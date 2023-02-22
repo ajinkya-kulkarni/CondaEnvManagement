@@ -10,7 +10,7 @@
 
 ###########################################################################################
 
-# Set the shell options to exit on error, unset variables
+# Set the shell options to exit on error, unset variables.
 set -eu
 
 echo ""
