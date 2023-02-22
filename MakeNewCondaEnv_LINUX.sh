@@ -1,73 +1,76 @@
 #!/bin/bash
 
-# Initialize the appropriate base env
-/home/ajinkya/anaconda3/bin/conda activate myenv
-
-# Clear all variables
+# Set the shell options to exit on error, unset variables
 set -eu
 
+# Clear the terminal output
+clear
+
+echo ""
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+echo ""
+
 # Remove all environments except `base`
-for i in `conda env list|awk '{print $1}'|egrep -v 'base|#'|tr '\n' ' '`;do echo $i;conda env remove --name $i;done
+for i in $(conda env list | awk '{print $1}' | egrep -v 'base|#' | tr '\n' ' '); do
+	if [ $i != "base" ]; then
+		echo "Removing environment $i"
+		conda env remove --name $i --yes
+	fi
+done
 
-# Install anaconda-clean first
-if ! conda install anaconda-clean --yes; then
-	echo "Error: Failed to install anaconda-clean. Please check your internet connection or try again later."
-fi
+echo ""
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+echo ""
 
-# Function to create and activate an environment
-create_environment() {
-	# Extract environment name and requirements file from input arguments
-	name="$1"
+# Define a function to create environments and install packages
+function create_environment 
+{
+	# Get the environment name from the first argument
+	name=$1
 
-	# Create and activate the environment
-	echo "Creating and activating $name environment"
-	if ! conda create --name "$name" python=3.9 --yes; then
+	echo ""
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	echo ""
+
+	# Create the environment
+	echo "Creating environment $name"
+	if ! conda create -n $name python=3.9 --yes; then
 		echo "Error: Failed to create $name environment."
 	fi
-	if ! conda activate "$name"; then
+
+	echo ""
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	echo ""
+
+	# Activate the environment
+	echo "Activating $name environment"
+	if ! conda activate $name; then
 		echo "Error: Failed to activate $name environment."
 	fi
 
-	# Install jupyter notebook
-	if ! conda install -c anaconda jupyter --yes; then
-		echo "Error: Failed to install jupyter notebook in $name environment."
-	fi
+	echo ""
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	echo ""
 
-	# First install wget
-	conda install -c anaconda wget --yes
-
-	# Install packages in the environment
+	# Install packages
 	echo "Installing packages in $name environment"
-	if ! wget -O- "https://raw.githubusercontent.com/ajinkya-kulkarni/CondaEnvManagement/main/requirements_common.txt" | xargs -n 1 pip install; then
-		echo "Error: Failed to install packages in $name environment."
-	fi
-	
+	python -m pip install numpy==1.24.0 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.8.1
+
 	if [ "$name" == "deeplearning" ]; then
-
-		pip install tensorflow-cpu==2.11.0
-		pip install scikit-learn==1.2.1
-		pip install stardist==0.8.3
-
+		python -m pip install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3
 	fi
 
 	if [ "$name" == "napari" ]; then
-
-		pip install tensorflow-cpu==2.11.0
-		pip install scikit-learn==1.2.1
-		pip install stardist==0.8.3
-		pip install pyqtwebengine==5.15
-		pip install "napari[all]"
-
+		python -m pip install pyqtwebengine==5.15.6 "napari[all]"
 	fi
 
 	if [ "$name" == "ABAproject" ]; then
-
-		pip install boto3==1.26.75
-		pip install botocore==1.29.75
-		pip install caosdb==0.11.0
-		pip install caosadvancedtools==0.6.1
-
+		python -m pip install boto3==1.17.107 botocore==1.20.107 caosdb==0.11.0 caosadvancedtools==0.6.1
 	fi
+
+	echo ""
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	echo ""
 
 	# Clean the environment
 	echo "Cleaning $name environment"
@@ -75,26 +78,26 @@ create_environment() {
 		echo "Error: Failed to clean $name environment."
 	fi
 
+	echo ""
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
+	echo ""
+
 	# Deactivate the environment
 	echo "Deactivating $name environment"
-	if ! conda deactivate; then
-		echo "Error: Failed to deactivate $name environment."
-	fi
+	conda deactivate
+
 }
 
-# Create and activate the general environment
-create_environment "general"
+# Define an array of environment names
+environments=("general" "deeplearning" "napari" "ABAproject")
 
-# Create and activate the deeplearning environment
-create_environment "deeplearning"
-
-# Create and activate the napari environment
-create_environment "napari"
-
-# Create and activate the ABAproject environment
-create_environment "ABAproject"
+# Loop through the array and create/activate each environment
+for env in "${environments[@]}"; do
+	create_environment "$env"
+done
 
 # Echo success message
 echo ""
 echo "All done!"
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _
 echo ""
