@@ -74,7 +74,7 @@ function create_environment
 	fi
 
 	if [ "$name" == "pyclesperanto" ]; then
-		conda install pocl -c conda-forge
+		conda install pocl -c conda-forge --yes
 		pip3 install pyclesperanto-prototype
 	fi
 
