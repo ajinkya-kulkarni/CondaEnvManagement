@@ -65,7 +65,7 @@ function create_environment
 
 	# Install packages
 	echo "Installing packages in $name environment"
-	python -m pip install numpy==1.24.0 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.8.0
+	python -m pip install numpy==1.24.0 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.8.0 protobuf~=3.19.0
 
 	if [ "$name" == "deeplearning" ]; then
 		python -m pip install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3
