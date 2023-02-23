@@ -74,7 +74,7 @@ function create_environment
 	python -m pip install tqdm==4.64.1 
 	python -m pip install tifffile==2023.2.3 
 	python -m pip install Pillow==9.4.0 
-	python -m pip install streamlit==1.8.1
+	python -m pip install streamlit==1.17.0
 	python -m pip install protobuf==3.20.*
 	
 	if [ "$name" == "deeplearning" ]; then
