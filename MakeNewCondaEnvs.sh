@@ -65,34 +65,20 @@ function create_environment
 
 	# Install packages
 	echo "Installing packages in $name environment"
-	python -m pip install numpy==1.24.0 
-	python -m pip install opencv-python-headless==4.7.0.68 
-	python -m pip install imageio==2.25.1 
-	python -m pip install scikit-image==0.19.3 
-	python -m pip install scipy==1.10.1 
-	python -m pip install matplotlib==3.7.0 
-	python -m pip install tqdm==4.64.1 
-	python -m pip install tifffile==2023.2.3 
-	python -m pip install Pillow==9.4.0 
-	python -m pip install streamlit==1.17.0
-	python -m pip install protobuf==3.20.*
+	pip3 install --upgrade pip
+	
+	pip3 install numpy==1.24.0 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.17.0 protobuf==3.20.* jupyter
 	
 	if [ "$name" == "deeplearning" ]; then
-		python -m pip install tensorflow-cpu==2.11.0 
-		python -m pip install scikit-learn==1.2.1 
-		python -m pip install stardist==0.8.3
+		pip3 install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3
 	fi
 
 	if [ "$name" == "napari" ]; then
-		python -m pip install pyqtwebengine==5.15.6 
-		python -m pip install "napari[all]"
+		pip3 install pyqtwebengine==5.15.6 "napari[all]"
 	fi
 
 	if [ "$name" == "ABAproject" ]; then
-		python -m pip install boto3==1.17.107 
-		python -m pip install botocore==1.20.107 
-		python -m pip install caosdb==0.11.0 
-		python -m pip install caosadvancedtools==0.6.1
+		pip3 install boto3==1.17.107 botocore==1.20.107 caosdb==0.11.0 caosadvancedtools==0.6.1
 	fi
 
 	echo ""
