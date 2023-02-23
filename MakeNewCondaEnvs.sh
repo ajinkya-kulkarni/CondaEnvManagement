@@ -67,7 +67,7 @@ function create_environment
 	echo "Installing packages in $name environment"
 	pip3 install --upgrade pip
 	
-	pip3 install numpy==1.24.0 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.17.0 protobuf==3.20.* jupyter
+	pip3 install numpy==1.24.0 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.17.0 protobuf==3.20.0 jupyter
 	
 	if [ "$name" == "deeplearning" ]; then
 		pip3 install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3
