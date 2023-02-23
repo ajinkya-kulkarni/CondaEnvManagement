@@ -73,8 +73,10 @@ function create_environment
 		pip3 install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3
 	fi
 
-	if [ "$name" == "pyclesperanto" ]; then
+	if [ "$name" == "pyclesperanto" ] && [ $(uname -s) = "Linux" ]; then
 		conda install pocl -c conda-forge --yes
+		pip3 install pyclesperanto-prototype
+	else
 		pip3 install pyclesperanto-prototype
 	fi
 
