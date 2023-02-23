@@ -73,8 +73,9 @@ function create_environment
 		pip3 install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3
 	fi
 
-	if [ "$name" == "napari" ]; then
-		pip3 install pyqtwebengine==5.15.6 "napari[all]"
+	if [ "$name" == "pyclesperanto" ]; then
+		conda install pocl -c conda-forge
+		pip3 install pyclesperanto-prototype
 	fi
 
 	if [ "$name" == "ABAproject" ]; then
