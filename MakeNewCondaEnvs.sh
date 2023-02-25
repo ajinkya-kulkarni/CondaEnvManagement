@@ -45,7 +45,7 @@ function create_environment
 
 	# Create the environment
 	echo "Creating environment $name"
-	if ! conda create -n $name python=3.9 --yes; then
+	if ! conda create -n $name python=3.8 --yes; then
 		echo "Error: Failed to create $name environment."
 	fi
 
