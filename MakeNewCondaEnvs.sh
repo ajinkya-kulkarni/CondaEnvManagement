@@ -45,8 +45,15 @@ function create_environment
 
 	# Create the environment
 	echo "Creating environment $name"
-	if ! conda create -n $name python=3.8 --yes; then
+
+	if [ "$name" != "numba" ]; then
+		if ! conda create -n $name python=3.10 --yes; then
 		echo "Error: Failed to create $name environment."
+		fi
+	else
+		if ! conda create -n $name python=3.8 --yes; then
+		echo "Error: Failed to create $name environment."
+		fi
 	fi
 
 	echo ""
