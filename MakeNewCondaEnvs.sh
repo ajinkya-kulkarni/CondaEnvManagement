@@ -19,6 +19,16 @@ echo ""
 
 ###########################################################################################
 
+# Remove all existing Conda environments from the miniconda3/envs/ directory
+rm -rf /home/ajinkya/miniconda3/envs/
+
+echo "Deleted all existing environments from miniconda3 folder"
+echo ""
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
+echo ""
+
+###########################################################################################
+
 # Remove all environments except `base`
 for i in $(conda env list | awk '{print $1}' | egrep -v 'base|#' | tr '\n' ' '); do
 	if [ $i != "base" ]; then
@@ -74,21 +84,20 @@ function create_environment
 	echo "Installing packages in $name environment"
 	pip3 install --upgrade pip
 	
-	pip3 install numpy==1.23.5 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.17.0 protobuf==3.20.0 jupyter
+	pip3 install numpy==1.23.5 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.6.0 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.17.0 protobuf==3.20.0 jupyter
 	
 	if [ "$name" == "numba" ]; then
 		pip3 install numba==0.56.0
 	fi
 
 	if [ "$name" == "deeplearning" ]; then
-		pip3 install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3
-	fi
 
-	if [ "$name" == "pyclesperanto" ]; then
-		pip3 install pyclesperanto-prototype
 		if [ $(uname -s) = "Linux" ]; then
 			conda install pocl -c conda-forge --yes
 		fi
+
+		pip3 install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3 pyclesperanto-prototype==0.23.2 
+		
 	fi
 
 	if [ "$name" == "ABAproject" ]; then
@@ -126,7 +135,7 @@ fi
 ###########################################################################################
 
 # Define an array of environment names
-environments=("general" "numba" "deeplearning" "pyclesperanto" "ABAproject")
+environments=("general" "numba" "deeplearning" "ABAproject")
 
 ###########################################################################################
 
