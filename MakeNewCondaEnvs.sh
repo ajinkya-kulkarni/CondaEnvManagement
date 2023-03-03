@@ -10,6 +10,8 @@
 
 ###########################################################################################
 
+clear
+
 # Set the shell options to exit on error, unset variables.
 set -eu
 
@@ -20,12 +22,24 @@ echo ""
 ###########################################################################################
 
 # Remove all existing Conda environments from the miniconda3/envs/ directory
-rm -rf /home/ajinkya/miniconda3/envs/
 
-echo "Deleted all existing environments from miniconda3 folder"
-echo ""
-printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
-echo ""
+if [ $(uname -s) = "Darwin" ]; then
+	rm -rf /Users/ajinkyakulkarni/miniconda3/envs/
+
+	echo "Deleted all existing environments from miniconda3 folder"
+	echo ""
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
+	echo ""
+fi
+
+if [ $(uname -s) = "Linux" ]; then
+	rm -rf /home/ajinkya/miniconda3/envs/
+
+	echo "Deleted all existing environments from miniconda3 folder"
+	echo ""
+	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
+	echo ""
+fi
 
 ###########################################################################################
 
@@ -56,16 +70,10 @@ function create_environment
 	# Create the environment
 	echo "Creating environment $name"
 
-	if [ "$name" != "numba" ]; then
-		if ! conda create -n $name python=3.10 --yes; then
-		echo "Error: Failed to create $name environment."
-		fi
-	else
-		if ! conda create -n $name python=3.8 --yes; then
-		echo "Error: Failed to create $name environment."
-		fi
+	if ! conda create -n $name python=3.10 --yes; then
+	echo "Error: Failed to create $name environment."
 	fi
-
+	
 	echo ""
 	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 	echo ""
@@ -82,14 +90,8 @@ function create_environment
 
 	# Install packages
 	echo "Installing packages in $name environment"
-	
-	pip3 install --upgrade pip
-	
-	pip3 install numpy==1.23.5 opencv-python-headless==4.7.0.68 imageio==2.25.1 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.6.2 tqdm==4.64.1 tifffile==2023.2.3 Pillow==9.4.0 streamlit==1.17.0 protobuf==3.20.0 jupyter
-	
-	if [ "$name" == "numba" ]; then
-		pip3 install numba==0.56.0
-	fi
+		
+	pip install numpy==1.24.2 opencv-python-headless==4.7.0.72 imageio==2.26.0 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.28 Pillow==9.4.0 streamlit==1.19.0 notebook==6.5.2 ipywidgets==8.0.4
 
 	if [ "$name" == "deeplearning" ]; then
 
@@ -97,12 +99,12 @@ function create_environment
 			conda install pocl -c conda-forge --yes
 		fi
 
-		pip3 install tensorflow-cpu==2.11.0 scikit-learn==1.2.1 stardist==0.8.3 pyclesperanto-prototype==0.23.2 
+		pip install scikit-learn==1.2.1 tensorflow-cpu==2.11.0 stardist==0.8.3 pyclesperanto-prototype==0.23.2 
 		
 	fi
 
 	if [ "$name" == "ABAproject" ]; then
-		pip3 install boto3==1.17.107 botocore==1.20.107 caosdb==0.11.0 caosadvancedtools==0.6.1
+		pip install boto3==1.26.83 botocore==1.29.83 caosdb==0.11.0 caosadvancedtools==0.6.1
 	fi
 
 	echo ""
@@ -136,7 +138,7 @@ fi
 ###########################################################################################
 
 # Define an array of environment names
-environments=("general" "numba" "deeplearning" "ABAproject")
+environments=("general" "deeplearning" "ABAproject")
 
 ###########################################################################################
 
