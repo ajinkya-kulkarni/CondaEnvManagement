@@ -104,7 +104,7 @@ function create_environment
 	fi
 
 	if [ "$name" == "ABAproject" ]; then
-		pip install boto3==1.26.83 botocore==1.29.83 caosdb==0.11.0 caosadvancedtools==0.6.1
+		pip install boto3==1.26.83 botocore==1.29.83 caosdb==0.11.0 caosadvancedtools==0.6.1 gspread==5.7.2 oauth2client==4.1.3
 	fi
 
 	echo ""
