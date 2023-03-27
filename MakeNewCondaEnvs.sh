@@ -95,11 +95,11 @@ function create_environment
 
 	if [ "$name" == "deeplearning" ]; then
 
-		if [ $(uname -s) = "Linux" ]; then
-			conda install pocl -c conda-forge --yes
-		fi
+# 		if [ $(uname -s) = "Linux" ]; then
+# 			conda install pocl -c conda-forge --yes
+# 		fi
 
-		pip install scikit-learn==1.2.1 tensorflow-cpu==2.11.0 stardist==0.8.3 pyclesperanto-prototype==0.23.2 
+		pip install scikit-learn==1.2.1 tensorflow-cpu==2.11.0 stardist==0.8.3 networkx==3.0 
 		
 	fi
 
