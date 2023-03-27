@@ -91,7 +91,7 @@ function create_environment
 	# Install packages
 	echo "Installing packages in $name environment"
 		
-	pip install numpy==1.24.2 opencv-python-headless==4.7.0.72 imageio==2.26.0 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.28 Pillow==9.4.0 streamlit==1.19.0 notebook==6.5.2 ipywidgets==8.0.4
+	pip install numpy==1.24.2 pandas==1.5.3 opencv-python-headless==4.7.0.72 imageio==2.26.0 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.28 Pillow==9.4.0 streamlit==1.19.0 notebook==6.5.2 ipywidgets==8.0.4
 
 	if [ "$name" == "deeplearning" ]; then
 
