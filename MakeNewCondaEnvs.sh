@@ -103,6 +103,13 @@ function create_environment
 		
 	fi
 
+	if [ "$name" == "deeplearningPytorch" ]; then
+
+		pip install scikit-learn==1.2.1
+		pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+		
+	fi
+
 	if [ "$name" == "ABAproject" ]; then
 		pip install boto3==1.26.83 botocore==1.29.83 caosdb==0.11.0 caosadvancedtools==0.6.1 gspread==5.7.2 oauth2client==4.1.3
 	fi
@@ -138,7 +145,7 @@ fi
 ###########################################################################################
 
 # Define an array of environment names
-environments=("general" "deeplearning" "ABAproject")
+environments=("general" "deeplearning" "ABAproject" "deeplearningPytorch")
 
 ###########################################################################################
 
