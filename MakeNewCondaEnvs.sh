@@ -107,6 +107,7 @@ function create_environment
 
 		pip install scikit-learn==1.2.1
 		pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+		pip install tensorboard
 		
 	fi
 
