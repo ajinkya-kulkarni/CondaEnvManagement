@@ -146,7 +146,7 @@ fi
 ###########################################################################################
 
 # Define an array of environment names
-environments=("general" "deeplearning" "ABAproject" "deeplearningPytorch")
+environments=("general" "deeplearning" "ABAproject")
 
 ###########################################################################################
 
