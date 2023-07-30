@@ -103,6 +103,12 @@ function create_environment
 		
 	fi
 
+	if [ "$name" == "cellpose" ]; then
+
+		pip install tifffile folium==0.2.1 imgaug==0.2.5 cellpose==1.0.2 wget memory_profiler fpdf scikit-learn astropy
+		
+	fi
+
 	if [ "$name" == "deeplearningPytorch" ]; then
 
 		pip install scikit-learn==1.2.1
@@ -146,7 +152,7 @@ fi
 ###########################################################################################
 
 # Define an array of environment names
-environments=("general" "deeplearning" "ABAproject")
+environments=("general" "cellpose" "deeplearning")
 
 ###########################################################################################
 
