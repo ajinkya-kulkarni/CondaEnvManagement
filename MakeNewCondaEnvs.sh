@@ -93,13 +93,23 @@ function create_environment
 		
 	pip install numpy==1.24.2 pandas==1.5.3 opencv-python-headless==4.7.0.72 imageio==2.26.0 scikit-image==0.19.3 scipy==1.10.1 matplotlib==3.7.0 tqdm==4.64.1 tifffile==2023.2.28 Pillow==9.4.0 streamlit==1.19.0 notebook==6.5.2 ipywidgets==8.0.4 altair==4.2.2
 
+	if [ "$name" == "LACSS" ]; then
+
+		pip install --upgrade pip
+		pip install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+		pip install lacss scikit-learn==1.2.1 tensorflow-cpu==2.11.0
+		
+	fi
+
 	if [ "$name" == "deeplearning" ]; then
 
-# 		if [ $(uname -s) = "Linux" ]; then
-# 			conda install pocl -c conda-forge --yes
-# 		fi
+		pip install scikit-learn==1.2.1 tensorflow-cpu==2.11.0 stardist==0.8.3 networkx==3.0 Augmentor
+		
+	fi
 
-		pip install scikit-learn==1.2.1 tensorflow-cpu==2.11.0 stardist==0.8.3 networkx==3.0 
+	if [ "$name" == "CPPNet" ]; then
+
+		pip install torch==1.11.0 stardist==0.6.0 csbdeep==0.6.3
 		
 	fi
 
@@ -152,7 +162,8 @@ fi
 ###########################################################################################
 
 # Define an array of environment names
-environments=("general" "cellpose" "deeplearning")
+environments=("general" "deeplearning")
+# environments=("general" "LACSS")
 
 ###########################################################################################
 
